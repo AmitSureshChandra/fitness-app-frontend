@@ -1,28 +1,72 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <v-app>
+        <v-main>
+          <v-container>
+            <v-card width="400" height="250">
+              <v-card-title class="text-center">
+                  Fitness App
+              </v-card-title>
+
+              <v-card-text>
+                <v-row>
+                  <v-col class="my-0" cols="12">
+                     <v-text-field type="email" label="Email" dense />
+                  </v-col>
+
+                  <v-col class="my-0" cols="12">
+                      <v-text-field
+                        v-model="password"
+                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                        :rules="[rules.required, rules.min]"
+                        :type="show1 ? 'text' : 'password'"
+                        name="input-10-1"
+                        label="Password"
+                        hint="At least 8 characters"
+                        counter
+                        dense
+                        @click:append="show1 = !show1"
+                      ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <v-card-actions class="float-right">
+                  <v-btn
+                    depressed
+                    color="primary"
+                  >
+                    Login
+                  </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-container>
+
+        </v-main>
+      </v-app>
   </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data () {
+      return {
+        show1: false,
+        show2: true,
+        show3: false,
+        show4: false,
+        password: 'Password',
+        rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Min 8 characters',
+          emailMatch: () => (`The email and password you entered don't match`),
+        },
+      }
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
