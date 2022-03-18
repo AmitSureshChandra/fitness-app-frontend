@@ -1,72 +1,90 @@
 <template>
   <div id="app">
-      <v-app>
-        <v-main>
-          <v-container>
-            <v-card width="400" height="250">
-              <v-card-title class="text-center">
-                  Fitness App
-              </v-card-title>
+    <v-app>
+      <v-main>
+        <v-app-bar
+          ><v-app-bar-nav-icon
+            @click.stop="drawer = !drawer"
+          ></v-app-bar-nav-icon>
+          <v-app-bar-title style="font-size: 20px">
+            Fitness App</v-app-bar-title
+          >
+        </v-app-bar>
+        <v-navigation-drawer v-model="drawer" absolute temporary>
+          <v-list-item>
+            <v-list-item-avatar>
+              <v-img
+                src="https://avatars.githubusercontent.com/u/47358181?v=4"
+              ></v-img>
+            </v-list-item-avatar>
 
-              <v-card-text>
-                <v-row>
-                  <v-col class="my-0" cols="12">
-                     <v-text-field type="email" label="Email" dense />
-                  </v-col>
+            <v-list-item-content>
+              <v-list-item-title>Amit Kesarwani</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-                  <v-col class="my-0" cols="12">
-                      <v-text-field
-                        v-model="password"
-                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                        :rules="[rules.required, rules.min]"
-                        :type="show1 ? 'text' : 'password'"
-                        name="input-10-1"
-                        label="Password"
-                        hint="At least 8 characters"
-                        counter
-                        dense
-                        @click:append="show1 = !show1"
-                      ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-              <v-card-actions class="float-right">
-                  <v-btn
-                    depressed
-                    color="primary"
-                  >
-                    Login
-                  </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-container>
+          <v-divider></v-divider>
 
-        </v-main>
-      </v-app>
+          <v-list dense>
+            <v-list-item v-for="item in items" :key="item.title" link>
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+        <v-container> All pages go here </v-container>
+        <!-- <v-bottom-navigation :value="value" color="teal" grow>
+          <v-btn>
+            <span>Recents</span>
+
+            <v-icon>mdi-history</v-icon>
+          </v-btn>
+
+          <v-btn>
+            <span>Favorites</span>
+
+            <v-icon>mdi-heart</v-icon>
+          </v-btn>
+
+          <v-btn>
+            <span>Nearby</span>
+
+            <v-icon>mdi-map-marker</v-icon>
+          </v-btn>
+        </v-bottom-navigation> -->
+      </v-main>
+    </v-app>
   </div>
-
 </template>
 
 <script>
 export default {
-  name: 'App',
-  data () {
-      return {
-        show1: false,
-        show2: true,
-        show3: false,
-        show4: false,
-        password: 'Password',
-        rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 8 || 'Min 8 characters',
-          emailMatch: () => (`The email and password you entered don't match`),
-        },
-      }
-    }
-}
+  name: "App",
+  data() {
+    return {
+      email: "akumar00029@gmail.com",
+      password: "password",
+      value: 1,
+      drawer: false,
+      items: [
+        { title: "Home", icon: "mdi-view-dashboard" },
+        { title: "Attendence", icon: "mdi-calendar-plus" },
+        { title: "Gym Data", icon: "mdi-clipboard-text" },
+        { title: "Membership", icon: "mdi-wallet-membership" },
+      ],
+    };
+  },
+  mounted() {},
+};
 </script>
 
 <style>
-
+.v-app-bar-title__content {
+  width: 125px;
+}
 </style>
