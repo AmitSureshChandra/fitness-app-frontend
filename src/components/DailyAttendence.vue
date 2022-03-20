@@ -30,7 +30,6 @@ export default {
       .get("/api/admin/attendences")
       .then(({ data }) => {
         this.data = data.data;
-        
       })
       .catch((e) => {
         console.log({ e });
@@ -45,10 +44,10 @@ export default {
       loading: false,
       headers: [
         {
-          text: "User ID",
+          text: "User",
           align: "start",
           sortable: false,
-          value: "user_id",
+          value: "name",
         },
         { text: "Branch ID", value: "branch_id" },
         { text: "Date", value: "date" },

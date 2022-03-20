@@ -45,10 +45,10 @@ export default {
       loading: false,
       headers: [
         {
-          text: "User ID",
+          text: "User",
           align: "start",
           sortable: false,
-          value: "user_id",
+          value: "name",
         },
         { text: "date", value: "date" },
         { text: "neck", value: "neck" },
