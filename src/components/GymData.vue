@@ -25,11 +25,12 @@ import axios from "axios";
 export default {
   name: "GymData",
   mounted() {
+    this.loading = true;
+
     axios
       .get("/api/admin/data")
       .then(({ data }) => {
         this.data = data.data;
-        this.loading = true;
       })
       .catch((e) => {
         console.log({ e });

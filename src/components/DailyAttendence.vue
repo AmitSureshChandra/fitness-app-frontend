@@ -25,11 +25,12 @@ import axios from "axios";
 export default {
   name: "DailyAttendence",
   mounted() {
+    this.loading = true;
     axios
       .get("/api/admin/attendences")
       .then(({ data }) => {
         this.data = data.data;
-        this.loading = true;
+        
       })
       .catch((e) => {
         console.log({ e });
